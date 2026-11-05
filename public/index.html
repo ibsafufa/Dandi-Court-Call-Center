@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123c5a">
+  <title>Phone & Computer Video Call</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header>
+      <div class="brand">☎</div>
+      <div>
+        <h1>Video & Voice Call</h1>
+        <p>Connect a phone and a computer over the internet</p>
+      </div>
+    </header>
+
+    <section class="join-panel" id="joinPanel">
+      <h2>Join a call</h2>
+      <label for="nameInput">Your name</label>
+      <input id="nameInput" maxlength="40" placeholder="Enter your name" autocomplete="name">
+      <label for="roomInput">Room code</label>
+      <div class="room-row">
+        <input id="roomInput" maxlength="40" placeholder="Example: DANDII-001" autocomplete="off">
+        <button id="generateBtn" class="secondary" type="button">Generate</button>
+      </div>
+      <div class="join-actions">
+        <button id="joinBtn" type="button">Join room</button>
+        <button id="copyLinkBtn" class="secondary" type="button">Copy invitation link</button>
+      </div>
+      <p class="hint">Both participants must enter the same room code. Allow camera and microphone access when your browser asks.</p>
+    </section>
+
+    <section class="call-panel hidden" id="callPanel">
+      <div class="call-top">
+        <div>
+          <h2 id="roomTitle">Room</h2>
+          <p id="status" role="status">Connecting…</p>
+        </div>
+        <span id="connectionBadge" class="badge">Not connected</span>
+      </div>
+      <div class="videos">
+        <div class="video-card">
+          <video id="remoteVideo" autoplay playsinline></video>
+          <span class="video-label" id="remoteLabel">Other participant</span>
+        </div>
+        <div class="video-card local-card">
+          <video id="localVideo" autoplay muted playsinline></video>
+          <span class="video-label">You</span>
+        </div>
+      </div>
+      <div class="controls">
+        <button id="micBtn" class="control" type="button" disabled>Mute mic</button>
+        <button id="cameraBtn" class="control" type="button" disabled>Turn camera off</button>
+        <button id="screenBtn" class="control" type="button" disabled>Share screen</button>
+        <button id="hangupBtn" class="danger" type="button">Leave call</button>
+      </div>
+    </section>
+
+    <div id="message" class="message" role="alert"></div>
+    <footer>Use a trusted network. For public deployment, configure HTTPS and a TURN server.</footer>
+  </main>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
